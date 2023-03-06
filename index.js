@@ -368,7 +368,7 @@ function showStar(row) {
 
 // Prime Number
 
-showPrimes(20);
+// showPrimes(20);
 
 function showPrimes(limit) {
     for(let number = 2; number <= limit; number++) 
@@ -381,3 +381,234 @@ function isPrime(number) {
             return false;
     return true;
 }
+
+
+// Object - Object oriented programming(OOP) style of programming
+//          Where we see a collection of object that perform a functionality.
+
+// Basic
+
+const circle = {
+    radius: 1,
+    location: {
+        x: 1,
+        y: 1,
+    },
+    isVisible: true,
+    move: function() {
+        console.log('moving..');
+    }
+}
+
+// circle.move();
+
+/* 
+
+Factory function
+- is use to create and return a new object with consistent set of properties and methods
+- Advantage of factory function, you dont have to write the same code again to create an object.
+
+*/ 
+
+
+function createCircle(radius) {
+    return {
+        radius,
+        move() {
+            console.log('Circle Moving...');
+        }
+    }
+}
+
+const circle1 = createCircle(1);
+// console.log(circle1.move());
+
+const circle2 = createCircle(2);
+// console.log(circle2.move());
+
+
+/*
+
+Contructor Function
+
+- Naming convention is PascalNotation (ex. Circle)
+- Return an object using the this keyword
+*/
+
+function Circle(radius) {
+    this.radius = radius;
+    this.draw = function() {
+        console.log('Circle Draw..');
+    }
+}
+
+const new_circle = new Circle(2);
+// console.log(new_circle);
+
+/*
+
+Dynamic Nature of an object.
+- You can insert a new property or method an object
+- Note: object or array that is assigned as a const is immutable.
+meaning. the properties or elements of that object or array can still be changed.
+*/
+
+const triangle = {
+    side: 3,
+};
+
+triangle.degree = 180;
+triangle.move = function() {
+    console.log('Moving triangle');
+};
+
+delete triangle.degree;
+
+// console.log(triang?le);
+
+
+/*
+Cloning an Object
+
+To clone an object there is 3 way.
+
+1. Old style
+    - Using the for..in loop and assign the property to another object.
+
+    const another = {};
+    for (let property in star)
+        another[property] = star[property];
+        
+2. Using the assign function
+    - Using the assign, it will copy the property and method
+    but you can still add property and method to object
+
+    const another = Object.assign({
+        color: 'yellow'
+    }, star);
+
+    const another1 = Object.assign({}, star);
+
+3. Using the spread (...) 
+    - Simpleist way to clone an object.
+
+    const another = { ...start };
+
+-- Takeaway: Using the assign and spread will clone an object
+but if you want to add more property and method to object use assign
+*/
+
+
+const star = {
+    side: 5,
+    shine() {
+        console.log('Star Shining..');
+    }
+}
+
+// const another = {};
+
+// for (let key in star) {
+//     another[key] = star['key'];
+// }
+
+const another = Object.assign({
+    color: 'yellow'
+}, star);
+
+const another1 = { ...star };
+console.log(another1);
+
+// Note: There is a garbage collector in JavaScript that happen automatically in the background
+console.log(Math.PI);
+
+// Template literal
+
+age = 23;
+const message = `
+Hi Jesther,
+
+I know you age is ${age} Message...
+
+Regards,`;
+
+console.log(message);
+
+const now = new Date();
+const date1 = new Date('December 15, 2023 12:13 23pm');
+console.log(date1);
+
+
+const address = {
+    street: 'Street',
+    city: 'Taguig',
+    zipCode: 1630,
+}
+
+function showAddress(address) {
+    for (let property in address)
+        console.log(property, address[property]);
+}
+
+showAddress(address);
+
+// Factory Function
+function createAddress(street, city, zipCode) {
+    return {
+        street,
+        city,
+        zipCode
+    };
+}
+
+// Contructor Function
+function Address(street, city, zipCode) {
+    this.street = street;
+    this.city = city;
+    this.zipCode = zipCode;
+}
+
+
+const address1 = new Address('Taguig', 'Taguig', 1);
+const address2 = new Address('Taguig', 'Taguig', 1);
+
+function areEqual(address1, address2) {
+    for (let property in address1) {
+        return address1[property] === address2[property];
+    }
+}
+
+function areSame(address1, address2) {
+    return address1 === address2;
+}
+
+console.log(areEqual(address1, address2));
+console.log(address2);
+
+
+const blog = {
+    title: 'JavaScript Tutorial',
+    body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, sint!',
+    author: 'Jesther',
+    view: 1000,
+    comments: [
+        { author: 'Anonymous', body: 'This is great' },
+        { author: 'Anonymous2', body: 'This is great too!' },
+    ],
+    isLive: true,
+}
+
+console.log(blog);
+
+function Posts(title, body, author) {
+    this.title = title;
+    this.body = body;
+    this.author = author;
+    this.view = 0;
+    this.comments = [];
+    this.isLive = false;
+}
+
+let post = new Posts('a', 'b', 'c');
+
+console.log(post);

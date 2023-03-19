@@ -517,10 +517,10 @@ const another = Object.assign({
 }, star);
 
 const another1 = { ...star };
-console.log(another1);
+// console.log(another1);
 
 // Note: There is a garbage collector in JavaScript that happen automatically in the background
-console.log(Math.PI);
+// console.log(Math.PI);
 
 // Template literal
 
@@ -536,7 +536,7 @@ console.log(message);
 
 const now = new Date();
 const date1 = new Date('December 15, 2023 12:13 23pm');
-console.log(date1);
+// console.log(date1);
 
 
 const address = {
@@ -550,7 +550,7 @@ function showAddress(address) {
         console.log(property, address[property]);
 }
 
-showAddress(address);
+// showAddress(address);
 
 // Factory Function
 function createAddress(street, city, zipCode) {
@@ -582,8 +582,8 @@ function areSame(address1, address2) {
     return address1 === address2;
 }
 
-console.log(areEqual(address1, address2));
-console.log(address2);
+// console.log(areEqual(address1, address2));
+// console.log(address2);
 
 
 const blog = {
@@ -598,7 +598,7 @@ const blog = {
     isLive: true,
 }
 
-console.log(blog);
+// console.log(blog);
 
 function Posts(title, body, author) {
     this.title = title;
@@ -611,4 +611,350 @@ function Posts(title, body, author) {
 
 let post = new Posts('a', 'b', 'c');
 
-console.log(post);
+// console.log(post);
+
+
+// Array
+
+// Adding Element to array
+
+/*
+3 ways to add element to array
+
+1. End of array - push() method
+2. Beginning of array - unshift() method
+3. Middle of array - splice() method
+*/ 
+const letters = ['a', 'b'];
+
+letters.push('c', 'd');
+letters.unshift('z');
+letters.splice(2, 0, 3, 4);
+console.log(letters);
+
+/* 
+
+Find Elements in array (Primitive Type)
+
+- indexOf() - it will return the index of array element. Data type is matter for array element.
+- lastIndexOf() - it will return the index of last duplicate in array element.
+- includes() - returns true or false if the elemets exist in the array
+
+*/
+console.log(letters.indexOf('a')); // return the index of elements in the array
+letters.push('a');
+console.log(letters);
+console.log(letters.lastIndexOf('a'));
+console.log(letters.includes('d'))
+
+
+/* 
+
+Find Elements in array (Reference Type)
+
+- find() - Return the elements of array
+- findIndex() - Return the index of element in the array
+
+*/
+
+const courses = [
+    {id: 1, name: 'IT'},
+    {id: 2, name: 'CS'}
+];
+
+const course = courses.find(function(course) {
+    return course.name === 'IT';
+})
+
+const course2 = courses.findIndex((course) => {
+    return course.name === 'IT';
+})
+
+console.log(course)
+console.log(course2)
+
+/*
+
+Removing Elements to Array
+
+- pop() - Remove Element in the End of Array and Store in variable the remove array(Optional)
+- shift() - Remove Element in the beginning of Array
+- splice() - Remove elements in the middle of array
+*/
+
+let numberInWord = ['one', 'two', 'three', 'four'];
+
+// const last = numberInWord.pop();
+
+// console.log(numberInWord);
+// console.log(last);
+
+// numberInWord.shift();
+// console.log(numberInWord);
+
+// numberInWord.splice(1, 1);
+// console.log(numberInWord);
+
+
+/*
+Emptying Array
+
+In order to empty array there is 4 way. 
+1. Point the array to new empty array(Recommended)
+Code: numberInWord = [];
+
+2. Assign 0 to array length
+Code: numberInWord.length = 0;
+
+3. Using the splice() method
+Code: numberInWord.splice(0, numberInWord.length);
+
+4. Using the pop() method
+Code: while(numberInWord.length > 0)
+        numberInWord.pop();
+*/
+
+while(numberInWord.length > 0)
+    numberInWord.pop();
+
+console.log(numberInWord);
+
+// Combine 2 array
+const first = [1, 2, 3];
+const second = [4, 5, 6];
+
+// To combine to array we use concat() method
+// const combine = first.concat(second);
+// console.log(combine);
+
+// To slice an array we can use slice() method
+// const slice = combine.slice(3, 5);
+// console.log(slice); // The result slice the combine array ang get the element in index 3 to 5
+
+// Another way to copy the array is use the spread operator - ES6
+const combine = [...first, ...second]; // We can also dynamic add element in between, end, and beginning using the spread operator 
+console.log(combine);
+
+// Another way to iterate array is using the foreach() Method
+
+combine.forEach((number, index) => {
+    console.log(number, index);
+});
+
+// Joining Array
+const numberArray = [1, 2, 3];
+const joined = numberArray.join(',');
+console.log(joined);
+
+const messaged = 'Hi This message from email';
+
+const parts = messaged.split(' ');
+console.log(parts);
+
+console.log(parts.join('-'));
+
+
+// Sort Array
+
+const shuffleCourseArray = [
+    {id: 1, name: 'IT'},
+    {id: 2, name: 'CS'}
+];
+
+
+shuffleCourseArray.sort(function(a, b) {
+    if (a.name < b.name) return -1;
+    if (a.name > b.name) return 1;
+    return ;
+});
+
+console.log(shuffleCourseArray);
+
+
+/*
+Some and every array function - New to JavaScript
+
+e
+*/
+const testElement = [1, -1, 2, 3];
+
+const allPositive = testElement.every((element) => {
+    return element > 0;
+});
+
+const atleastOnePositive = testElement.some((element) => {
+    return element > 0;
+});
+
+console.log('Is all positive?', allPositive);
+console.log('Atleast one positive?', atleastOnePositive);
+
+
+// Filter array using filter method
+// filter method return a new set of element that match the filter criteria
+
+const filter = testElement.filter((value) => {
+    return value >= 0;
+});
+
+console.log(filter);
+
+// Mapping array
+
+
+// const arr = [2, 7, 11, 15];
+// const target = 13;
+
+// console.log('Two sum');
+// let result = '';
+// for(let i = 0; i < arr.length; i++) {
+//     for (let j = 0; j <= i; j++) {
+//         if(arr[j] + arr[i] === target) {
+//             result += arr[j] + ' ' + arr[i];
+//         }
+//     }
+// }
+//  console.log(result);
+
+// const arr1 = [9,9,9,9,9,9,9];
+// const arr2 = [9,9,9,9];
+// const arrResult = [];
+// let res = 0;
+// for (let i = 0; i < arr1.length; i++) {
+//     res += arr1[i] + arr2[i];
+// }
+
+// let num1 = parseInt(arr1.join(''));
+// let num2 = parseInt(arr2.join(''));
+// let total = num1 + num2;
+// console.log(total);
+
+// const digits = String(total) .split('') .map(Number);
+// console.log(digits);
+
+// const reverse = [];
+
+
+// for (let i = digits.length - 1; i >= 0; i--) {
+//     reverse.push(digits[i]);
+// }
+
+// console.log(reverse);
+
+let arrayNumbers = [1, 2, 3, -3, 4, 5];
+
+const total = arrayNumbers.reduce((initiliaze, currentValue) => {
+    return initiliaze + currentValue;
+});
+
+console.log(total);
+
+const arrayNumber = arrayFromRange(-10, 4);
+// Array - Array from range
+console.log(arrayNumber);
+
+function arrayFromRange(min, max) {
+    output = [];
+    for (let i = min; i <= max; i++) {
+        output.push(i);
+    }
+    return output;
+}
+
+// Check if the elements exist in the array
+
+const arrayNumberAgain = [1, 2, 3, 4, 5];
+
+console.log(includes(arrayNumberAgain, 7));
+
+function includes(array, searchElement) {
+    for (let element of array) {
+        if (element === searchElement)
+            return true;
+    }
+    return false;
+}
+
+// Return new array that exclude the element
+
+const originalArray = [1, 2, 3, 4, 5];
+
+const excludedArray = except(originalArray, [1, 2, 3, 4]);
+
+console.log(excludedArray);
+
+function except(array, excluded) {
+    const output = [];
+
+    for (let element of array) {
+        if (!excluded.includes(element)) {
+            output.push(element);
+        }
+    }
+    return output;
+}
+
+const originalNumbers = [11, 2, 3, 4];
+
+const moveArray = move(originalNumbers, 2, 1);
+
+console.log(moveArray);
+
+
+function move(array, index, offset) {
+    if( offset >= array.length || offset < 0) {
+        console.error('Invalid offset');
+        return;
+    }
+    const output = [...array];
+    const element = output.splice(index, 1)[0];
+    output.splice(offset, 0, element);
+    return output;
+}
+
+
+const max = getMax(originalNumbers);
+
+console.log(max);
+
+function getMax(array) {
+    let max = array[0];
+
+    for (let element of array) {
+        if (element > max) {
+            max = element;
+        }
+    }
+    return max;
+}
+
+const movies = [
+    {
+        title: 'a',
+        year: 2018,
+        rating: 4.5
+    },
+    {
+        title: 'b',
+        year: 2019,
+        rating: 4.7
+    },
+    {
+        title: 'c',
+        year: 2020,
+        rating: 3.5
+    },
+    {
+        title: 'd',
+        year: 2021,
+        rating: 4
+    },
+];
+
+const titles = movies
+    .filter(m => m.year === 2018 && m.rating >= 4)
+    .sort((a, b) => a.rating - b.rating)
+    .reverse()
+    .map(m => m.title);
+
+console.log(titles);
